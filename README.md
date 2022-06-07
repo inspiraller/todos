@@ -1,6 +1,8 @@
+# Key: 
+- MAINREPO: https://github.com/inspiraller/todos.git
+
 # Pre-requisites 1
-- clone repo and install dependencies
-- git clone thisreop
+- git clone MAINREPO
 - cd thisrepo
 - npm i
 
@@ -12,7 +14,8 @@
 - cd node-app
 - npm i
 
-- cd back to the thisrepo
+# Go back to MAINREPO
+- cd MAINREPO
 
 ----------------------------------------------------------------
 # Start from thisrepo
