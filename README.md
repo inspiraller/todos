@@ -76,6 +76,8 @@ break
 - Consume an api or mock api to dynamically populate that todos list
 - Provide a CRUD interface to Add to the todos list
 - Create basic tests against rendering
+- Mobile responsive layout
+- Basic accessibility support
 ----------------------------------------
 # Briefly explan your technical design and why do you think is the best approach to this problem?
 - I have used next.js, react, typescript and redux (As desired skill required on job spec)
@@ -91,6 +93,12 @@ break
 - I would provide theming of styles
 - I would allow language support - option to run in different languages
 - I would spend more time on node implementation and replace the cache solution with a db
+- I would put in e2e tests with cypress, playwright or equivalent
+- I would put in sonar for capturing code quality
+- I may separate components into a react lazy load
+- I may separate components into bit cloud
+- I would create nicer error handling
+- I would test on a few mobile device sizes
 ...
 
 
