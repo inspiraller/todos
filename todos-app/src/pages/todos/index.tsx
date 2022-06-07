@@ -1,8 +1,18 @@
 import type { NextPage } from "next";
+import useSWR from "swr";
+
 import MasterHead from "src/components/Head/MasterHead";
+import TodoArticle from "src/components/TodoArticle/TodoArticle";
 import styles from "src/styles/Home.module.css";
+import { fetchTodos, TODOS_URL_GET } from "src/services/todos";
+
 
 const Todos: NextPage = () => {
+  const { data: resp, error } = useSWR(TODOS_URL_GET, fetchTodos);
+  if (error) return <div>Failed to load</div>;
+  if (!resp) return <div>Loading...</div>;
+
+  const { todosListPending, todosListCompleted } = resp.data;
   return (
     <div className={styles.container}>
       <MasterHead />
@@ -10,33 +20,8 @@ const Todos: NextPage = () => {
         <h1 className={styles.todos__mainTitle}>Todos</h1>
 
         <div className={styles.todos__wrapper}>
-          <article className={styles.todos__group}>
-            <h2 className={styles.todos__groupHeading}>Pending</h2>
-            <ul className={styles.grid}>
-              <li>
-                <h3 className={styles.todos__title}>Documentation 1</h3>
-              </li>
-              <li>
-                <h3 className={styles.todos__title}>Documentation 2</h3>
-              </li>
-              <li>
-                <h3 className={styles.todos__title}>Documentation 3</h3>
-              </li>
-            </ul>
-          </article>
-
-          <article className={styles.todos__group}>
-            <h2 className={styles.todos__groupHeading}>Completed</h2>
-            <ul className={styles.grid}>
-            <li>
-                <h3 className={styles.todos__title}>Documentation 4</h3>
-              </li>
-              <li>
-                <h3 className={styles.todos__title}>Documentation 5</h3>
-              </li>
- 
-            </ul>
-          </article>
+          <TodoArticle title={"Pending"} todosList={todosListPending} />
+          <TodoArticle title={"Completd"} todosList={todosListCompleted} />
         </div>
       </main>
     </div>

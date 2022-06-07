@@ -29,3 +29,11 @@ npm i jest ts-jest jest-css-modules-transform jest-transform-stub jest-environme
 
 # mark timestamps
 - create css, html, next/boilerplate, listing todos, module resolver - src, dynamic head
+
+# Adding tests
+- update eslintrc.json - in order to create custom jest file
+```
+{
+  "extends": ["next/babel","next/core-web-vitals"]
+}
+```
