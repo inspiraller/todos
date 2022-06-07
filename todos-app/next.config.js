@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
-
-module.exports = nextConfig
+module.exports = {
+  trailingSlash: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/todos',
+        permanent: false
+      }
+    ];
+  }
+};
