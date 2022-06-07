@@ -18,7 +18,7 @@
 - cd MAINREPO
 
 ----------------------------------------------------------------
-# Start from thisrepo
+# Start from MAINREPO
 - npm start
 - open browser window at localhost:3000
 

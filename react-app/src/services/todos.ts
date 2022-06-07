@@ -11,3 +11,10 @@ export interface PropsTodos {
   todosListCompleted: string[];
 }
 export type TtodosResponse = AxiosResponse<PropsTodos>;
+
+// -------------------------------------
+type TAddTodo = (props: { title: string }) => Promise< AxiosResponse<string[]>>; // Just return pending
+
+// TODO: get from .env
+export const TODOS_POST_GET = "//localhost:80/api/todos/post";
+export const postTodo: TAddTodo = (data) => axios.post(TODOS_POST_GET, data);
