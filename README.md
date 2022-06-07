@@ -1,16 +1,17 @@
 # How long did you spend on your solution?
 
-1) 30m - create next app - with basic styling to render a list of todos
-2) 45mm - put index page into a todos page, create jest setup and create basic render test
-3) 30m - Refactor todos page - into separate components ton consume data from a fictitious REST response.
-4) 45m - create a mock json response to load into this component, using msw and ensure test still passes
+1. 30m - create next app - with basic styling to render a list of todos
+2. 45mm - put index page into a todos page, create jest setup and create basic render test
+3. 30m - Refactor todos page - into separate components ton consume data from a fictitious REST response.
+4. 45m - create a mock json response to load into this component, using msw and ensure test still passes
 
 break
-5) 1.30m node - create basic node server to provide REST api, and consume into todos page. 
-6) 10m - Create Add Todo component 
-7) 1h - Configure redux with devtools - to consume the rest api get request - to then populate Todos. Ensure test still works with redux
-8) 10m - create action creator to just populate entire pending todos after api post method.
-9) 20m tidyup and and ensure tests still work
+
+5. 1.30m node - create basic node server to provide REST api, and consume into todos page. 
+6. 10m - Create Add Todo component 
+7. 1h - Configure redux with devtools - to consume the rest api get request - to then populate Todos. Ensure test still works with redux
+8. 10m - create action creator to just populate entire pending todos after api post method.
+9. 20m tidyup and and ensure tests still work
 
 -------------------------------------------
 # How do you build and run solution?
