@@ -1,26 +1,40 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, useEffect } from "react";
 
 import useSWR from "swr";
 
 import TodoArticle from "src/components/TodoArticle/TodoArticle";
 import stylesTodo from "src/styles/Todo.module.css";
 
-import { fetchTodos, TODOS_URL_GET } from "src/services/todos";
+import { fetchTodos, prefixProtocol, TODOS_URL_GET, TtodosResponse } from "src/services/todos";
 import TodoAdd from "src/components/TodoAdd/TodoAdd";
+import useTodos from "src/store/data/todos/useTodos";
 
 const Todos: FC = () => {
-  const { data: resp, error } = useSWR(TODOS_URL_GET, fetchTodos);
+  const { acPopulateTodos, pending, completed } = useTodos();
+  const { data: resp, error } = useSWR(`${prefixProtocol}${TODOS_URL_GET}`, fetchTodos);
+
+  const obj = (resp as TtodosResponse)?.data;
+  const pendingLoaded = obj?.pending
+  const completedLoaded = obj?.completed;
+
+  useEffect(() => {
+    acPopulateTodos({
+      pending: pendingLoaded,
+      completed: completedLoaded,
+    });
+  }, [pendingLoaded, completedLoaded]);
+
   if (error) return <div className={stylesTodo.fail}>Failed to load</div>;
   if (!resp) return <div className={stylesTodo.loading}>Loading...</div>;
 
-  const { todosListPending, todosListCompleted } = resp.data;
+
   return (
     <>
       <h1 className={stylesTodo.mainTitle}>Todos</h1>
       <TodoAdd />
       <div className={stylesTodo.wrapper}>
-        <TodoArticle title={"Pending"} todosList={todosListPending} />
-        <TodoArticle title={"Completd"} todosList={todosListCompleted} />
+        <TodoArticle title={"Pending"} todosList={pending as string[]} />
+        <TodoArticle title={"Completed"} todosList={completed as string[]} />
       </div>
     </>
   );

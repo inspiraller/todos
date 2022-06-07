@@ -1,4 +1,4 @@
 {
-  "todosListPending": ["example pending item"],
-  "todosListCompleted": ["exmaple completed item"]
+  "pending": ["example pending item"],
+  "completed": ["exmaple completed item"]
 }

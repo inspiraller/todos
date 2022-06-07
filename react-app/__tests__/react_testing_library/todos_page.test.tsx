@@ -4,8 +4,7 @@ import WrapProvider from "__tests__/__utils__/WrapProvider";
 import Todos from "src/pages/todos";
 
 import { mswServerAll } from '__tests__/msw/msw_mock_ajax';
-import mockTodos from '__tests__/msw/mockTodos';
-
+import mockTodos from '__tests__/msw/mockTodos.json';
 
 const RENDERED_TEXT = 'Todos';
 
@@ -24,7 +23,7 @@ const renderPage = async () => {
 
 let rendered: any;
 
-const RENDERED_ARTICLE = mockTodos.todosListCompleted[0]
+const RENDERED_ARTICLE = mockTodos.completed[0]
 
 describe("<Todos>", () => {
   describe('onload', () => {

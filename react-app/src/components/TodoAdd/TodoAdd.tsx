@@ -1,18 +1,24 @@
 import React, { FC, useState } from "react";
 import { postTodo } from "src/services/todos";
+import useTodos from "src/store/data/todos/useTodos";
 import { TevtForm, TevtInputChange } from "src/types";
 
 const TodoAdd: FC = () => {
+  const { acPopulateTodos, pending } = useTodos();
+
   const [todoValue, setTodoValue] = useState("");
 
   const handleChange = (evt: TevtInputChange) => {
     setTodoValue(evt.target.value);
   };
   const handleSubmit = (evt: TevtForm) => {
-    postTodo({ title: todoValue }).then(resp => {
-      console.log(resp.data); // pending []
-      // populate context/redux/reducer etc
-    })
+    if ((pending as string[]).indexOf(todoValue) === -1) {
+      postTodo({ title: todoValue }).then((resp) => {
+        acPopulateTodos({
+          pending: resp.data,
+        });
+      });
+    }
     evt.preventDefault();
   };
   return (

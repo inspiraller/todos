@@ -17,6 +17,8 @@ const customJestConfig = {
   collectCoverage: true,
   coveragePathIgnorePatterns: [
     "node_modules",
+    "<rootDir>/src/store/config/*",
+    "<rootDir>/src/pages/_app.tsx",
   ],
   collectCoverageFrom: [
     "<rootDir>/src/*.{ts,tsx}",
@@ -24,10 +26,10 @@ const customJestConfig = {
   ],
   coverageThreshold: {
     global: {
-      branches: 0,
-      functions: 50,
+      branches: 80,
+      functions: 25,
       lines: 100,
-      statements: 100,
+      statements: 66,
     },
   },
 };
