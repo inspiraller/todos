@@ -3,6 +3,7 @@ npx create-next-app@latest todos-app --typescript --use-npm
 
 # move /pages into /src/pages
 rm -rf .next
+mkdir src
 mv styles src/styles
 mv pages src/pages
 
