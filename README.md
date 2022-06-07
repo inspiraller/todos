@@ -87,6 +87,7 @@ break
 - Disclaimer: I don't think this is the best approach, but is a good demonstration of a combination of tech stack.
 
 # If you were unable to complete any user stories, outline why and how would you have liked to implement them.
+- I'd tidy up the references to urls for the api Requests to be share in a .env file between the node and react-app
 - I would have tidied up the styles (to enjoy the user experience)
 - Regarding - marking a pending item complete - I would add another action in node, and in redux
 - I would create a production implementation of all the above
