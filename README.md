@@ -84,6 +84,7 @@ break
 - have demonstrated experience using various tech stacks - node, react, jest, react testing library, consuming data via api, redux and so on
 - I have organised code for maintainability and kept code structure small
 - I have separated logic - services, redux, testing, react components, react routes for code structure
+- Disclaimer: I don't think this is the best approach, but is a good demonstration of a combination of tech stack.
 
 # If you were unable to complete any user stories, outline why and how would you have liked to implement them.
 - I would have tidied up the styles (to enjoy the user experience)
@@ -99,6 +100,8 @@ break
 - I may separate components into bit cloud
 - I would create nicer error handling
 - I would test on a few mobile device sizes
+- I'd learn and become more fluent in graphql and replace redux solution and node with graphql and apollo server
+
 ...
 
 
