@@ -1,7 +1,7 @@
 import React from 'react'
 import {render as pureRender, waitFor as pureWaitFor, screen as pureScreen} from '@testing-library/react/pure' // prevent cleanup after test - https://github.com/testing-library/react-testing-library/issues/541#issuecomment-562601514
 
-import WrapProvider from '__tests__/__utils__/WrapProvider'
+import WrapProvider from '__tests__/__utils__/react/WrapProvider'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const renderPure = async (Comp: React.ComponentType<any>, textRendered: string) => {

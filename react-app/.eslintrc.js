@@ -59,6 +59,7 @@ module.exports = {
       { extensions: ['.js', '.jsx', '.tsx'] },
     ],
     'react/react-in-jsx-scope': 0, // not necessary with latest react
+    'react/require-default-props': 0, // not using proptypes so as long as a default is supplied inside the function (param=val)
     'testing-library/no-render-in-setup': 0 // actually this is bad - reduces rerendering time for performant tests
   },
 }

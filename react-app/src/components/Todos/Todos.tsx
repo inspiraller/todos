@@ -14,8 +14,11 @@ import {
 import TodoAdd from 'src/components/TodoAdd/TodoAdd'
 import useTodos from 'src/store/data/todos/useTodos'
 
-export const TEXT_FAILED = 'Failed to load';
-export const TEXT_LOADING = 'Loading...';
+export const TEXT_FAILED = 'Failed to load'
+export const TEXT_LOADING = 'Loading...'
+export const TESTID_PENDING = 'group-pending'
+
+export const TESTID_TODO_ITEM_EXISTS = 'todoExists'
 
 const Todos: FC = () => {
   const { acPopulateTodos, pending, completed } = useTodos()
@@ -29,11 +32,13 @@ const Todos: FC = () => {
   const completedLoaded = obj?.completed
 
   useEffect(() => {
-    acPopulateTodos({
-      pending: pendingLoaded,
-      completed: completedLoaded,
-    })
-  }, [pendingLoaded, completedLoaded, acPopulateTodos])
+    if (!pending?.length && pendingLoaded && completedLoaded) {
+      acPopulateTodos({
+        pending: pendingLoaded,
+        completed: completedLoaded,
+      })
+    }
+  }, [pending, pendingLoaded, completedLoaded, acPopulateTodos])
 
   if (error) return <div className={stylesTodo.fail}>{TEXT_FAILED}</div>
   if (!resp) return <div className={stylesTodo.loading}>{TEXT_LOADING}</div>
@@ -43,7 +48,12 @@ const Todos: FC = () => {
       <h1 className={stylesTodo.mainTitle}>Todos</h1>
       <TodoAdd />
       <div className={stylesTodo.wrapper}>
-        <TodoArticle title={'Pending'} todosList={pending as string[]} />
+        <TodoArticle
+          title={'Pending'}
+          todosList={pending as string[]}
+          dataTestId={TESTID_PENDING}
+          dataTestIdItemExists={TESTID_TODO_ITEM_EXISTS}
+        />
         <TodoArticle title={'Completed'} todosList={completed as string[]} />
       </div>
     </>

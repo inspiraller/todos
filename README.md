@@ -103,7 +103,19 @@ break
 - I would test on a few mobile device sizes
 - I'd learn and become more fluent in graphql and replace redux solution and node with graphql and apollo server
 
-...
+--------------------------------------------
+# release/0.1.1
+## 5h Fix eslint issues with next - update README in setup.md
+- support alias in both src/ and __tests__/
+- Extend eslint rules
+- Add jest testing-library rules
+- Remove conflicting rules
+## 1h investigation/experiment - react-testing-library
+- 3h Experiment with react-testing-library - to provide pure solution tests
+- 10m Adapt existing react application to write tests against data-testid
+- 10m Write a test to capture the first user story - enter into an input field, then submit to populate 'pending'
+- 40m Debug react,redux,msw to pass test. Extend msw with rest.post method. Fix react-testing-library userEvent to correctly pass input to submit post. Fix react-testing-library to waitFor update after userAction. Tidy up
+
 
 
 

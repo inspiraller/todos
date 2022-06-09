@@ -1,6 +1,6 @@
 import React from 'react'
 import {render, waitFor, screen} from '@testing-library/react' 
-import WrapProvider from '__tests__/__utils__/WrapProvider'
+import WrapProvider from '__tests__/__utils__/react/WrapProvider'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const renderPage = async (Comp: React.ComponentType<any>, textRendered: string) => {
