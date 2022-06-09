@@ -1,4 +1,6 @@
 import { createStore, Store } from "redux";
+
+/* eslint-disable import/no-extraneous-dependencies */
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import createRootReducer, { ApplicationState } from "./rootReducer";

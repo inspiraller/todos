@@ -3,6 +3,8 @@ import { postTodo } from "src/services/todos";
 import useTodos from "src/store/data/todos/useTodos";
 import { TevtForm, TevtInputChange } from "src/types";
 
+export const TEXT_TODO = 'My todo';
+
 const TodoAdd: FC = () => {
   const { acPopulateTodos, pending } = useTodos();
 
@@ -21,14 +23,16 @@ const TodoAdd: FC = () => {
     }
     evt.preventDefault();
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <fieldset>
         <legend>Add Todo</legend>
+
         <input
           type="text"
-          aria-label="todo"
-          placeholder="todo"
+          aria-label={TEXT_TODO}
+          placeholder={TEXT_TODO}
           value={todoValue}
           onChange={handleChange}
         />

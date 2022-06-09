@@ -22,5 +22,3 @@ if (!objStore.store) {
 
 export default objStore as PropStore;
 
-// to update
-export type RootState = any;

@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const nextJest = require("next/jest");
+
 const createJestConfig = nextJest({
   dir: "./",
 });
@@ -14,6 +16,7 @@ const customJestConfig = {
     "^src/(.*)$": "<rootDir>/src/$1",
     "^__tests__/(.*)$": "<rootDir>/__tests__/$1",
   },
+  'setupFilesAfterEnv': ['./jest/setup.js'],
   collectCoverage: true,
   coveragePathIgnorePatterns: [
     "node_modules",

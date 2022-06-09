@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "version": "1.0.0",
+  "name": "todos-node-app",
+  "version": "0.1.0",
   "description": "",
   "main": "nodeServerExample.js",
   "scripts": {
