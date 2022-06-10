@@ -1,6 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const Pool = require('pg').Pool
+
 const NodeCache = require( "node-cache" );
+
 const initCache = require('./initCache/index');
 const getTodos = require("./getTodos/getTodos");
 const postTodo = require("./postTodo/postTodo");
@@ -18,8 +21,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+const pool = new Pool({
+  user: 'postgres_todos_user',
+  host: 'localhost',
+  database: 'postgres_todos_db',
+  password: 'postgres_todos_pwd',
+  port: 5432,
+})
+
 // handle requests...
-getTodos.get({app, myCache});
+getTodos.get({app, myCache, pool});
 postTodo.post({app, myCache});
 
 app.listen(port, host, function () {
