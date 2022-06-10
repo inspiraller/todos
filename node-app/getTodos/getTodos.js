@@ -1,3 +1,8 @@
+const path = require('path');
+require('dotenv').config({path: path.resolve(__dirname, '../../.env')})
+
+const {PG_TABLE} = process.env;
+
 // TODO: get from .env
 const url = "/api/todos/get";
 
@@ -5,7 +10,7 @@ module.exports = {
   url,
   get: ({app, myCache, pool}) => {
 
-    pool.query('SELECT * FROM todos ORDER BY id ASC', (error, results) => {
+    pool.query(`SELECT * FROM ${PG_TABLE} ORDER BY id ASC`, (error, results) => {
       if (error) {
         throw error
       }

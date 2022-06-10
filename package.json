@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build_postgres": "cd node-app/pg && docker-compose --env-file \"../../.env\" up",
     "server": "cd node-app && npm start",
     "client": "cd react-app && npm run dev",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run build_postgres\" \"npm run server\" \"npm run client\""
   },
   "dependencies": {
-    "concurrently": "^7.2.1"
+    "concurrently": "^7.2.1",
+    "dotenv": "^16.0.1"
   }
 }

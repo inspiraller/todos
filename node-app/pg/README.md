@@ -60,13 +60,14 @@ docker exec -it postgres_todos psql     -U postgres_todos_user -d postgres_todos
 
 
 # Create new user and new db with owner
-CREATE USER todos_user WITH PASSWORD 'todos_password';
-CREATE DATABASE todos OWNER todos_user;
+<!-- CREATE USER todos_user WITH PASSWORD 'todos_password';
+CREATE DATABASE todos OWNER todos_user; -->
+```
 CREATE TABLE todos(
 id SERIAL PRIMARY KEY,
 name VARCHAR(500) NOT NULL,
 completed BOOLEAN NOT NULL);
-
+```
 
 # Advance solution - create a timestamp (nice to have. Do later)
 - https://x-team.com/blog/automatic-timestamps-with-postgresql/
