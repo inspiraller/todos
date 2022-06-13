@@ -1,10 +1,19 @@
+import express from "express";
+import cors from "cors";
+import NodeCache from "node-cache";
+
 import path from "path";
 import dotEnv from "dotenv";
 
-import { sql, DataIntegrityError } from "slonik";
+import { sql, DataIntegrityError, createPool } from "slonik";
 import type { DatabasePool } from "slonik";
 
 dotEnv.config({ path: path.resolve(__dirname, "../.env") });
+
+import initCache from "./initCache/index";
+import getTodos from "./getTodos/getTodos";
+import postTodo from "./postTodo/postTodo";
+// import { createTableIfNotExist } from "./db/createTableIfNotExist";
 
 const { env } = process;
 
@@ -12,6 +21,27 @@ const PG_DB = env.PG_DB as string;
 const PG_USER = env.PG_USER as string;
 const PG_PWD = env.PG_PWD as string;
 const PG_TABLE = env.PG_TABLE as string;
+
+console.log({ PG_DB, PG_USER, PG_PWD, PG_TABLE });
+const host = "localhost"; // any url
+const port = 80; // any port
+
+const myCache = initCache(new NodeCache());
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const initServer = (pool: DatabasePool) => {
+  getTodos.get({ app, myCache, pool });
+  postTodo.post({ app, myCache });
+
+  app.listen(port, host, function () {
+    console.log("listening on ", host, ":", port);
+  });
+};
 
 const createTable = async (pool: DatabasePool) => {
   console.log({
@@ -33,7 +63,7 @@ const createTable = async (pool: DatabasePool) => {
       name VARCHAR(500) NOT NULL,
       completed BOOLEAN NOT NULL);
   `;
-  console.log('query', query)
+    console.log("query", query);
     pool.connect(async (connection) => {
       try {
         const result = await connection.query(query);
@@ -42,6 +72,7 @@ const createTable = async (pool: DatabasePool) => {
         console.log("2. TABLE XISTS", { err });
         resolve(true);
       }
+
       //  finally {
       //   await (connection as any).release();
       // }
@@ -49,7 +80,7 @@ const createTable = async (pool: DatabasePool) => {
   });
 };
 
-export const createTableIfNotExist = async (
+const createTableIfNotExist = async (
   pool: DatabasePool,
   cb: (pool: DatabasePool) => void
 ) => {
@@ -80,8 +111,31 @@ export const createTableIfNotExist = async (
         throw err;
       }
     }
-    // finally {
-    //   await (connection as any).release();
-    // }
   });
 };
+
+const init = () => {
+  // postgresql://[user[:password]@][host[:port]][/database name][?name=value[&...]]
+  const pool = createPool(
+    `postgresql://${PG_USER}:${PG_PWD}@localhost:5432/${PG_DB}`
+  );
+
+  pool.connect(async (connection) => {
+    try {
+      const result = await connection.query(
+        sql`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = ${PG_TABLE});`
+      );
+      const isExist = result.rows[0].exists;
+
+
+      // DONT WRAP IN CONNECTION AGAIN
+      const result2 = await connection.query(query);
+      console.log("2. createTable", { result2 });
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  // createTableIfNotExist(pool, initServer);
+};
+
+init();
