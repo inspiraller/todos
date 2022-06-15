@@ -1,11 +1,19 @@
-
+import express from "express";
+import cors from "cors";
+import NodeCache from "node-cache";
 
 import path from "path";
 import dotEnv from "dotenv";
 
-import { sql, createPool } from "slonik";
+import { createPool, DatabasePool, sql } from "slonik";
+import type { QueryResultRow } from "slonik";
 
 dotEnv.config({ path: path.resolve(__dirname, "../.env") });
+
+import initCache from "./initCache/index";
+import getTodos from "./getTodos/getTodos";
+import postTodo from "./postTodo/postTodo";
+import { TemplateLiteral } from "typescript";
 
 const { env } = process;
 
@@ -15,10 +23,34 @@ const PG_PWD = env.PG_PWD as string;
 const PG_TABLE = env.PG_TABLE as string;
 
 console.log({ PG_DB, PG_USER, PG_PWD, PG_TABLE });
+const host = "localhost"; // any url
+const port = 80; // any port
 
+const myCache = initCache(new NodeCache());
 
-const query1 = sql`SELECT EXISTS (SELECT FROM pg_tables WHERE schemaname = 'public' AND tablename  = ${PG_TABLE});`;
-const query2 = sql`CREATE TABLE ${PG_TABLE} (id SERIAL PRIMARY KEY, name VARCHAR(500) NOT NULL, completed BOOLEAN NOT NULL);`
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+const initServer = (pool: DatabasePool) => {
+  getTodos.get({ app, myCache, pool, table: PG_TABLE });
+  postTodo.post({ app, myCache });
+
+  app.listen(port, host, function () {
+    console.log("listening on ", host, ":", port);
+  });
+};
+
+// function template(strings: TemplateStringsArray, ... expr: string[]) {
+//   let str = '';
+//   strings.raw.forEach((string, i) => {
+//       str += string + (expr[i] || '');
+//   });
+//   return str as unknown as TemplateLiteral;
+// }
+
 const init = () => {
   // postgresql://[user[:password]@][host[:port]][/database name][?name=value[&...]]
   console.log("createPool");
@@ -26,20 +58,26 @@ const init = () => {
     `postgresql://${PG_USER}:${PG_PWD}@localhost:5432/${PG_DB}`
   );
 
+
+
   pool.connect(async (connection) => {
+    console.log("connect", { PG_TABLE });
     try {
-      const result = await connection.query(query1);
-      const isExist = result.rows[0].exists;
-      console.log('1. isExist', {result, isExist})
+      // const query = {sql: `SELECT * FROM ${PG_TABLE} ORDER BY id ASC;`, type: 'SLONIK_TOKEN_SQL', values: []} as any;
+      const query = sql`SELECT * FROM ${sql.identifier([PG_TABLE])} ORDER BY id ASC`
 
-      const result2 = await connection.query(query2);
-      console.log('2. createTable', {result2})
 
-    } catch(err) {
-      console.log(err)
+      console.log('other sql formats', {query})
+ 
+      const result = await connection.query(query);
+
+      console.log("LOAD result", result.rows);
+    } catch (err) {
+      console.log(err);
     }
-  })
-  // createTableIfNotExist(pool, initServer);
+  });
+
+  initServer(pool);
 };
 
 init();

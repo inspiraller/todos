@@ -75,6 +75,3 @@ connection.query(sql`
     return myPromise() // success
   });
 ```
-
-
-```

@@ -7,20 +7,27 @@ services:
     environment:
       # How to connect (Need to specify actual database aswell as user)
       # docker exec -it postgres_todos psql -U postgres_todos_user -d postgres_todos_db 
-      - POSTGRES_DB=${PG_DB}
-      - POSTGRES_USER=${PG_USER}
-      - POSTGRES_PASSWORD=${PG_PWD}
+      - POSTGRES_DB=$PG_DB
+      - POSTGRES_USER=$PG_USER
+      - POSTGRES_PASSWORD=$PG_PWD
+      - PG_TABLE=$PG_TABLE # for Dockerfile and script
+
+   # This is the way to run a bash script to pass variables to seed.sql.
+   # note: must run docker-compose up --build
+    build:
+      context: .
+      args:
+       - PG_TABLE=${PG_TABLE}
+      # - POSTGRES_MULTIPLE_DATABASES=db1,db2
+
     ports:
           - "5432:5432"
     volumes:
       - postgresql:/var/lib/postgresql
-      # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
-      - postgresql_data:/var/lib/postgresql/data
-
+    restart: unless-stopped
 volumes:
   # Will create docker volume with name of the container folder: sql/postgresql = sql_postgresql
-  ## example remove:  docker volume rm  sql_postgresql
+  # How to removee:  docker volume rm  sql_postgresql
   postgresql:
-  postgresql_data:
 
 
