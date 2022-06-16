@@ -33,3 +33,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# when exporting data - doing only locally and not commiting
+postgres-db/export.csv

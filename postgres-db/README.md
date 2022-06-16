@@ -62,6 +62,7 @@ sh postgres-db\script.sh
 # Double quotes around column names that have uppercase
 "todoText"
 
+# Exporting - interesting
+https://dba.stackexchange.com/questions/308374/docker-exec-user-db2inst1-unable-to-find-user-db2inst1-no-matching-entries-i
 
-
-
+docker exec -it container-db psql -U postgres_todos_user -d postgres_todos_db -c "COPY todos TO STDOUT WITH CSV HEADER" > postgres-db/postgresql_data/export.csv

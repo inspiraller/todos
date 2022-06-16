@@ -18,7 +18,6 @@ const PG_USER = env.PG_USER as string;
 const PG_PWD = env.PG_PWD as string;
 const PG_TABLE = env.PG_TABLE as string;
 
-console.log({ PG_DB, PG_USER, PG_PWD, PG_TABLE });
 const host = "localhost"; // any url
 const port = 80; // any port
 
@@ -39,7 +38,6 @@ const initServer = (pool: DatabasePool) => {
 
 const init = () => {
   // postgresql://[user[:password]@][host[:port]][/database name][?name=value[&...]]
-  console.log("CREATE POOL");
   const pool = createPool(
     `postgresql://${PG_USER}:${PG_PWD}@localhost:5432/${PG_DB}`
   );

@@ -50,13 +50,17 @@ postgres,dynamic table names via arg into dockerfile, slonik identifier dynamic 
 - open browser window at localhost:3000
 
 ***expected***
+- Will create a container for postgres
 - Will load node-app, to provide a basic REST api point for mock data of todo items
 - Will load react-app, to consume REST api
 - Will display a list of todos, supplied by data from rest API and consumed by react app
 
 ----------------------------------------------------------------
-## End 
-- CTRL C C
+## End Docker
+npm run db-clear
+
+***expected***
+- Will export db into postgres-db/export.csv
 
 ----------------------------------------------------------------
 ## Test react app
