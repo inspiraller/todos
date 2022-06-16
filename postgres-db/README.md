@@ -4,12 +4,19 @@
 # Testing:
 # connect
 // connect      containername  language username               database
-docker exec -it todos          psql     -U postgres_todos_user -d postgres_todos_db
+docker exec -it container-db          psql     -U postgres_todos_user -d postgres_todos_db
 
+# or debug
+docker exec -it container-db bash
 
 # Search if table exist
 ```
 SELECT EXISTS (SELECT FROM pg_tables WHERE tablename = 'todos');
+```
+
+# Search files 
+```
+SELECT * FROM todos ORDER BY id ASC;
 ```
 
 # view db

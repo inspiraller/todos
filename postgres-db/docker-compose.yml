@@ -2,32 +2,30 @@ version: "2"
 
 services:
   db:
-    container_name: todos
+    container_name: container-db
     image: postgres:12
     environment:
-      # How to connect (Need to specify actual database aswell as user)
-      # docker exec -it postgres_todos psql -U postgres_todos_user -d postgres_todos_db 
       - POSTGRES_DB=$PG_DB
       - POSTGRES_USER=$PG_USER
       - POSTGRES_PASSWORD=$PG_PWD
-      - PG_TABLE=$PG_TABLE # for Dockerfile and script
+      # - PG_TABLE=$PG_TABLE # for Dockerfile and script
+      - PGDATA=/tmp # ERROR FIX - initdb: error: directory "/var/lib/postgresql/data" exists but is not empty
 
-   # This is the way to run a bash script to pass variables to seed.sql.
-   # note: must run docker-compose up --build
     build:
       context: .
       args:
-       - PG_TABLE=${PG_TABLE}
+       - PG_TABLE=${PG_TABLE} # Needed to pass variable to Dockerfile during build
       # - POSTGRES_MULTIPLE_DATABASES=db1,db2
 
     ports:
           - "5432:5432"
+
     volumes:
-      - postgresql:/var/lib/postgresql
+       - ./postgresql_data:/var/lib/postgresql/data
+
     restart: unless-stopped
 volumes:
-  # Will create docker volume with name of the container folder: sql/postgresql = sql_postgresql
-  # How to removee:  docker volume rm  sql_postgresql
-  postgresql:
+  # Will create docker volume with name of the container folder: postgres-db_pgdata/**/pgdata = postgres-db_pgdata
+  pgdata:
 
 

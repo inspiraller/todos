@@ -13,7 +13,6 @@ dotEnv.config({ path: path.resolve(__dirname, "../.env") });
 import initCache from "./initCache/index";
 import getTodos from "./getTodos/getTodos";
 import postTodo from "./postTodo/postTodo";
-import { TemplateLiteral } from "typescript";
 
 const { env } = process;
 
@@ -43,41 +42,27 @@ const initServer = (pool: DatabasePool) => {
   });
 };
 
-// function template(strings: TemplateStringsArray, ... expr: string[]) {
-//   let str = '';
-//   strings.raw.forEach((string, i) => {
-//       str += string + (expr[i] || '');
-//   });
-//   return str as unknown as TemplateLiteral;
-// }
-
 const init = () => {
   // postgresql://[user[:password]@][host[:port]][/database name][?name=value[&...]]
-  console.log("createPool");
+  console.log("CREATE POOL");
   const pool = createPool(
     `postgresql://${PG_USER}:${PG_PWD}@localhost:5432/${PG_DB}`
   );
 
-
-
   pool.connect(async (connection) => {
-    console.log("connect", { PG_TABLE });
     try {
-      // const query = {sql: `SELECT * FROM ${PG_TABLE} ORDER BY id ASC;`, type: 'SLONIK_TOKEN_SQL', values: []} as any;
-      const query = sql`SELECT * FROM ${sql.identifier([PG_TABLE])} ORDER BY id ASC`
+      const resultExist = await connection.query(sql`SELECT EXISTS (SELECT FROM pg_tables WHERE tablename  = ${PG_TABLE});`);
+      const isExist = resultExist.rows[0].exists;
+      console.log('DB exists =', {isExist})
 
+      // NOTE: Could need to use sql.identifier to reference dynamic table name.
+      const resultRows = await connection.query(sql`SELECT * FROM ${sql.identifier([PG_TABLE])} ORDER BY id ASC`);
+      console.log('TABLE ROWS EXIST', {resultRows})
 
-      console.log('other sql formats', {query})
- 
-      const result = await connection.query(query);
-
-      console.log("LOAD result", result.rows);
     } catch (err) {
       console.log(err);
     }
   });
-
-  initServer(pool);
 };
 
 init();
