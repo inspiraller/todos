@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import NodeCache from "node-cache";
 
 import path from "path";
 import dotEnv from "dotenv";
@@ -9,7 +8,6 @@ import { createPool, DatabasePool, sql } from "slonik";
 
 dotEnv.config({ path: path.resolve(__dirname, "../.env") });
 
-import initCache from "./initCache/index";
 import getTodos from "./getTodos/getTodos";
 import postTodo from "./postTodo/postTodo";
 
@@ -24,8 +22,6 @@ console.log({ PG_DB, PG_USER, PG_PWD, PG_TABLE });
 const host = "localhost"; // any url
 const port = 80; // any port
 
-const myCache = initCache(new NodeCache());
-
 const app = express();
 
 app.use(cors());
@@ -33,8 +29,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const initServer = (pool: DatabasePool) => {
-  getTodos.get({ app, myCache, pool, table: PG_TABLE });
-  postTodo.post({ app, myCache });
+  getTodos.get({ app,  pool, table: PG_TABLE });
+  postTodo.post({ app, pool, table: PG_TABLE });
 
   app.listen(port, host, function () {
     console.log("listening on ", host, ":", port);

@@ -59,6 +59,9 @@ List of relations
 sh postgres-db\script.sh
 - pass variables - https://www.baeldung.com/linux/use-command-line-arguments-in-bash-script
 
+# Double quotes around column names that have uppercase
+"todoText"
+
 
 
 

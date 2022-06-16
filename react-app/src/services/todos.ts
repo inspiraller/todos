@@ -15,7 +15,7 @@ export interface PropsTodos {
 export type TtodosResponse = AxiosResponse<PropsTodos>;
 
 // -------------------------------------
-type TAddTodo = (props: { title: string }) => Promise< AxiosResponse<string[]>>; // Just return pending
+type TAddTodo = (props: { todoText: string }) => Promise< AxiosResponse<string[]>>; // Just return pending
 
 // TODO: get from .env
 export const TODOS_URL_POST = "/api/todos/post";

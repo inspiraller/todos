@@ -13,7 +13,7 @@ const TodoAdd: FC = () => {
   };
   const handleSubmit = (evt: TevtForm) => {
     if ((pending as string[]).indexOf(todoValue) === -1) {
-      postTodo({ title: todoValue }).then((resp) => {
+      postTodo({ todoText: todoValue }).then((resp) => {
         acPopulateTodos({
           pending: resp.data,
         });

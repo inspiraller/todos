@@ -18,6 +18,7 @@ const Todos: FC = () => {
   const completedLoaded = obj?.completed;
 
   useEffect(() => {
+
     acPopulateTodos({
       pending: pendingLoaded,
       completed: completedLoaded,
@@ -33,8 +34,8 @@ const Todos: FC = () => {
       <h1 className={stylesTodo.mainTitle}>Todos</h1>
       <TodoAdd />
       <div className={stylesTodo.wrapper}>
-        <TodoArticle title={"Pending"} todosList={pending as string[]} />
-        <TodoArticle title={"Completed"} todosList={completed as string[]} />
+        <TodoArticle todoGroup={"Pending"} todosList={pending as string[]} />
+        <TodoArticle todoGroup={"Completed"} todosList={completed as string[]} />
       </div>
     </>
   );
