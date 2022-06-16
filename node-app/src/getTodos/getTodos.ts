@@ -19,22 +19,19 @@ const getTodos: Props = {
   get: ({ app, myCache, pool, table }) => {
     console.log("4. getTodos...");
 
-    // try {
-    //   pool.connect(async (connection) => {
-    //     console.log('connect', {table})
-    //     try {
-    //       const result = await connection.query(
-    //         sql`SELECT * FROM ${table} ORDER BY id ASC;`
-    //       );
+    try {
+      pool.connect(async (connection) => {
+        console.log("connect", { table });
 
-    //       console.log("5. example get from postgresql", result.rows);
-    //     } catch (err) {
-    //       console.log(err);
-    //     }
-    //   });
-    // } catch (err) {
-    //   console.log("GET  catch", { err });
-    // }
+        const resultRows = await connection.query(sql`SELECT * FROM ${sql.identifier([table])} ORDER BY id ASC`);
+
+ 
+
+        console.log("5. example get from postgresql", resultRows);
+      });
+    } catch (err) {
+      console.log("GET  catch", { err });
+    }
 
     return app.get(url, (req, res) => {
       return res.send(myCache.mget(["pending", "completed"]));

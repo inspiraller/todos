@@ -6,7 +6,6 @@ import path from "path";
 import dotEnv from "dotenv";
 
 import { createPool, DatabasePool, sql } from "slonik";
-import type { QueryResultRow } from "slonik";
 
 dotEnv.config({ path: path.resolve(__dirname, "../.env") });
 
@@ -53,11 +52,9 @@ const init = () => {
     try {
       const resultExist = await connection.query(sql`SELECT EXISTS (SELECT FROM pg_tables WHERE tablename  = ${PG_TABLE});`);
       const isExist = resultExist.rows[0].exists;
-      console.log('DB exists =', {isExist})
-
-      // NOTE: Could need to use sql.identifier to reference dynamic table name.
-      const resultRows = await connection.query(sql`SELECT * FROM ${sql.identifier([PG_TABLE])} ORDER BY id ASC`);
-      console.log('TABLE ROWS EXIST', {resultRows})
+      if (isExist) {
+        initServer(pool)
+      }
 
     } catch (err) {
       console.log(err);
