@@ -13,6 +13,16 @@ break
 8. 10m - create action creator to just populate entire pending todos after api post method.
 9. 20m tidyup and and ensure tests still work
 
+# release/0.1.2-docker.sql
+10. 4 days investigation slonik
+- To be able to use .env to supply variable names of postgres user/pass, db, table, 
+- Investigate how to create a table in docker using .env, arg, docker-compose build, bash script to iterate over args to find/replace args to supply into file.sql to create table.
+- Investigate how to import csv into docker via mounting, fix error pgdata environment variable
+- Provide a way for slonik to run sql statements via postgres to reference variable names for tablename using sql identifier
+- Debug fullstack chain
+11. 1/2 day - Finish nodeserver, and react-app to consume data
+
+postgres,dynamic table names via arg into dockerfile, slonik identifier dynamic name to supply to sql statement, 
 -------------------------------------------
 # How do you build and run solution?
 ## Key: 
