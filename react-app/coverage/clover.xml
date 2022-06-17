@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1654615630042" clover="3.2.0">
-  <project timestamp="1654615630042" name="All files">
-    <metrics statements="73" coveredstatements="68" conditionals="10" coveredconditionals="8" methods="16" coveredmethods="12" elements="99" coveredelements="88" complexity="0" loc="73" ncloc="73" packages="6" files="8" classes="8"/>
+<coverage generated="1655453752840" clover="3.2.0">
+  <project timestamp="1655453752840" name="All files">
+    <metrics statements="83" coveredstatements="69" conditionals="16" coveredconditionals="7" methods="20" coveredmethods="10" elements="119" coveredelements="86" complexity="0" loc="83" ncloc="83" packages="8" files="11" classes="11"/>
     <package name="components.TodoAdd">
-      <metrics statements="15" coveredstatements="10" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <metrics statements="16" coveredstatements="10" conditionals="1" coveredconditionals="0" methods="5" coveredmethods="1"/>
       <file name="TodoAdd.tsx" path="C:\baps\react_all\todos2022\react-app\src\components\TodoAdd\TodoAdd.tsx">
-        <metrics statements="15" coveredstatements="10" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <metrics statements="16" coveredstatements="10" conditionals="1" coveredconditionals="0" methods="5" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -15,37 +15,61 @@
         <line num="11" count="2" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
         <line num="14" count="2" type="stmt"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="16" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="1"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="24" count="2" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.TodoArticle">
+      <metrics statements="16" coveredstatements="12" conditionals="3" coveredconditionals="2" methods="5" coveredmethods="3"/>
+      <file name="TodoArticle.tsx" path="C:\baps\react_all\todos2022\react-app\src\components\TodoArticle\TodoArticle.tsx">
+        <metrics statements="16" coveredstatements="12" conditionals="3" coveredconditionals="2" methods="5" coveredmethods="3"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="33" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="34" count="4" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.Todos">
-      <metrics statements="19" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+      <metrics statements="20" coveredstatements="20" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="Todos.tsx" path="C:\baps\react_all\todos2022\react-app\src\components\Todos\Todos.tsx">
-        <metrics statements="19" coveredstatements="19" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <metrics statements="20" coveredstatements="20" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="13" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
         <line num="16" count="3" type="stmt"/>
         <line num="17" count="3" type="stmt"/>
-        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
         <line num="20" count="3" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="27" count="3" type="cond" truecount="0" falsecount="1"/>
-        <line num="28" count="3" type="cond" truecount="1" falsecount="0"/>
-        <line num="31" count="2" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="31" count="3" type="cond" truecount="0" falsecount="1"/>
+        <line num="32" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
       </file>
     </package>
     <package name="pages.todos">
@@ -61,60 +85,61 @@
       </file>
     </package>
     <package name="services">
-      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
-      <file name="todos.ts" path="C:\baps\react_all\todos2022\react-app\src\services\todos.ts">
-        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <metrics statements="14" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+      <file name="addTodo.ts" path="C:\baps\react_all\todos2022\react-app\src\services\addTodo.ts">
+        <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+      </file>
+      <file name="getTodos.ts" path="C:\baps\react_all\todos2022\react-app\src\services\getTodos.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+      </file>
+      <file name="updateTodo.ts" path="C:\baps\react_all\todos2022\react-app\src\services\updateTodo.ts">
+        <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="util.ts" path="C:\baps\react_all\todos2022\react-app\src\services\util.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
       </file>
     </package>
     <package name="store.data.todos">
-      <metrics statements="20" coveredstatements="20" conditionals="3" coveredconditionals="3" methods="5" coveredmethods="5"/>
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="_initialState.ts" path="C:\baps\react_all\todos2022\react-app\src\store\data\todos\_initialState.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="7" count="2" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-      </file>
-      <file name="reducer.ts" path="C:\baps\react_all\todos2022\react-app\src\store\data\todos\reducer.ts">
-        <metrics statements="8" coveredstatements="8" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="7" count="5" type="cond" truecount="2" falsecount="0"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-      </file>
-      <file name="useTodos.ts" path="C:\baps\react_all\todos2022\react-app\src\store\data\todos\useTodos.ts">
-        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="5" type="stmt"/>
-        <line num="9" count="5" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="13" count="8" type="stmt"/>
-        <line num="14" count="8" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
       </file>
     </package>
     <package name="store.data.todos.actionAndReducers">
       <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
       <file name="populateTodos.ts" path="C:\baps\react_all\todos2022\react-app\src\store\data\todos\actionAndReducers\populateTodos.ts">
         <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
-        <line num="3" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="22" count="3" type="stmt"/>
-        <line num="24" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
         <line num="25" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="27" count="3" type="stmt"/>
+        <line num="26" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="types">
+      <metrics statements="2" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="index.ts" path="C:\baps\react_all\todos2022\react-app\src\types\index.ts">
+        <metrics statements="2" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="2" count="0" type="cond" truecount="0" falsecount="3"/>
       </file>
     </package>
   </project>

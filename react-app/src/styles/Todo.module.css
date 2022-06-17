@@ -19,14 +19,18 @@
   max-width: 300px;
 }
 .groupHeading {
+  margin: 0;
   font-size: 4rem;
 }
 .ul {
+  margin: 0;
+  padding: 0;
   max-width: 800px;
+  list-style-type: none;
 }
 
 .todoGroup {
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem 1rem;
   font-size: 2.5rem;
   font-weight: normal;
 }

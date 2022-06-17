@@ -4,3 +4,8 @@ export interface RowProps {
   completed: boolean;
 }
 export type ReadonlyRows = ReadonlyArray<RowProps>;
+
+export interface RowPropsClient {
+  id: number;
+  todoText: string;
+}

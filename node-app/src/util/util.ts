@@ -1,7 +1,7 @@
-import { ReadonlyRows, RowProps } from "src/types";
+import { ReadonlyRows, RowProps, RowPropsClient } from "src/types";
 
-export const filterPending = (rows: ReadonlyRows): ReadonlyArray<RowProps['todoText']> =>
-  rows.filter((row) => !row.completed).map((row) => row.todoText);
+export const filterPending = (rows: ReadonlyRows): RowPropsClient[] =>
+  rows.filter((row) => !row.completed).map(({completed, ...rest}) => rest);
 
-export const filterCompleted = (rows: ReadonlyRows): ReadonlyArray<RowProps['todoText']> =>
-  rows.filter((row) => row.completed).map((row) => row.todoText);
+export const filterCompleted = (rows: ReadonlyRows): RowPropsClient[] =>
+  rows.filter((row) => row.completed).map(({completed, ...rest}) => rest);

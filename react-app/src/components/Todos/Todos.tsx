@@ -5,13 +5,16 @@ import useSWR from "swr";
 import TodoArticle from "src/components/TodoArticle/TodoArticle";
 import stylesTodo from "src/styles/Todo.module.css";
 
-import { fetchTodos, prefixProtocol, TODOS_URL_GET, TtodosResponse } from "src/services/todos";
+import { PREFIX_PROTOCOL, TtodosResponse } from "src/services/util";
+import { fetchTodos, TODOS_URL_GET } from "src/services/getTodos";
+
 import TodoAdd from "src/components/TodoAdd/TodoAdd";
 import useTodos from "src/store/data/todos/useTodos";
+import { RowPropsClient } from "src/types";
 
 const Todos: FC = () => {
   const { acPopulateTodos, pending, completed } = useTodos();
-  const { data: resp, error } = useSWR(`${prefixProtocol}${TODOS_URL_GET}`, fetchTodos);
+  const { data: resp, error } = useSWR(`${PREFIX_PROTOCOL}${TODOS_URL_GET}`, fetchTodos);
 
   const obj = (resp as TtodosResponse)?.data;
   const pendingLoaded = obj?.pending
@@ -34,8 +37,8 @@ const Todos: FC = () => {
       <h1 className={stylesTodo.mainTitle}>Todos</h1>
       <TodoAdd />
       <div className={stylesTodo.wrapper}>
-        <TodoArticle todoGroup={"Pending"} todosList={pending as string[]} />
-        <TodoArticle todoGroup={"Completed"} todosList={completed as string[]} />
+        <TodoArticle todoGroup={"Pending"} todosList={pending as RowPropsClient[]} />
+        <TodoArticle todoGroup={"Completed"} isCompleted={true} todosList={completed as RowPropsClient[]} />
       </div>
     </>
   );

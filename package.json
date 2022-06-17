@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "db": "cd postgres-db && docker-compose --env-file \"../.env\" up --build -d",
+    "db": "cd postgres-db && docker-compose --env-file \"../.env\" up --build ",
     "server": "cd node-app && npm start",
     "client": "cd react-app && npm run dev",
     "start": "concurrently \"npm run db\" \"npm run server\" \"npm run client\"",

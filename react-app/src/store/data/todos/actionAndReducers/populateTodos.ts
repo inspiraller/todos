@@ -1,10 +1,11 @@
+import { RowPropsClient } from 'src/types';
 import { PropsInitial } from '../_initialState';
 
 export const TYPE_POPULATE_TODOS = 'todos/POPULATE_TODOS';
 
 export interface Payload {
-  pending?: string[];
-  completed?: string[];
+  pending?: RowPropsClient[];
+  completed?: RowPropsClient[];
 }
 
 type TacPopulateTodos = (props: Payload) => {

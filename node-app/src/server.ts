@@ -9,7 +9,8 @@ import { createPool, DatabasePool, sql } from "slonik";
 dotEnv.config({ path: path.resolve(__dirname, "../.env") });
 
 import getTodos from "./getTodos/getTodos";
-import postTodo from "./postTodo/postTodo";
+import addTodo from "./postTodo/addTodo";
+import updateTodo from "./postTodo/updateTodo";
 
 const { env } = process;
 
@@ -29,7 +30,9 @@ app.use(express.urlencoded({ extended: true }));
 
 const initServer = (pool: DatabasePool) => {
   getTodos.get({ app,  pool, table: PG_TABLE });
-  postTodo.post({ app, pool, table: PG_TABLE });
+
+  addTodo.post({ app, pool, table: PG_TABLE });
+  updateTodo.post({ app, pool, table: PG_TABLE });
 
   app.listen(port, host, function () {
     console.log("listening on ", host, ":", port);

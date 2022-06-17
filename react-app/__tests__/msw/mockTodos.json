@@ -1,4 +1,4 @@
 {
-  "pending": ["example pending item"],
-  "completed": ["exmaple completed item"]
+  "pending": [{"id": 1, "todoText": "two"}],
+  "completed": [{"id": 2, "todoText": "one"}]
 }

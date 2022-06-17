@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { postTodo } from "src/services/todos";
+import { addTodo } from "src/services/addTodo";
 import useTodos from "src/store/data/todos/useTodos";
 import { TevtForm, TevtInputChange } from "src/types";
 
@@ -12,8 +12,9 @@ const TodoAdd: FC = () => {
     setTodoValue(evt.target.value);
   };
   const handleSubmit = (evt: TevtForm) => {
-    if ((pending as string[]).indexOf(todoValue) === -1) {
-      postTodo({ todoText: todoValue }).then((resp) => {
+    const isTodoTextExist = pending?.some(item => item.todoText === todoValue)
+    if (!isTodoTextExist) {
+      addTodo({ todoText: todoValue }).then((resp) => {
         acPopulateTodos({
           pending: resp.data,
         });

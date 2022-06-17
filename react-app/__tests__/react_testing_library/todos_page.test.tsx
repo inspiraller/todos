@@ -23,7 +23,7 @@ const renderPage = async () => {
 
 let rendered: any;
 
-const RENDERED_ARTICLE = mockTodos.completed[0]
+const RENDERED_ARTICLE = mockTodos.completed[0].todoText;
 
 describe("<Todos>", () => {
   describe('onload', () => {

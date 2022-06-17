@@ -4,13 +4,13 @@ import initialState from "src/store/data/todos/_initialState";
 
 describe("populateTodos", () => {
   it("should populate Todos", () => {
+    const pending =  [{ id: 1, todoText: "apple" }]
     const result = rdcPopulateTodos({
       state: { ...initialState },
       payload: {
-        pending: ['apple']
+        pending
       },
     });
-    expect(result.pending).toMatchObject(['apple']);
+    expect(result.pending).toMatchObject(pending);
   });
-
 });

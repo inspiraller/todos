@@ -1,7 +1,8 @@
+import { RowPropsClient } from "src/types";
 
 export interface PropsInitial {
- pending: string[];
- completed: string[];
+ pending: RowPropsClient[]
+ completed: RowPropsClient[]
 }
 
 const initialState: PropsInitial = {
