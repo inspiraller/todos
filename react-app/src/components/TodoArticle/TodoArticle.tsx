@@ -2,6 +2,11 @@ import React, { FC } from "react";
 import useTodos from "src/store/data/todos/useTodos";
 import stylesTodo from "src/styles/Todo.module.css";
 import { RowPropsClient, TevtInputChange } from "src/types";
+import TodoGroupHeading, {
+  compareStringAsc,
+  compareStringDesc,
+  useSortList,
+} from "../TodoGroupHeading/TodoGroupHeading";
 import TodoUpdate, { useUpdate } from "../TodoUpdate/TodoUpdate";
 
 interface Props {
@@ -28,20 +33,53 @@ const Label: FC<PropsLabel> = ({ isCompleted, id, todoText, handleChange }) => {
   );
 };
 
+const sortDistance = (
+  aStart: number,
+  aEnd: number,
+  bStart: number,
+  bEnd: number
+) => aEnd - aStart - (bEnd - bStart);
+
 const TodoArticle: FC<Props> = ({ todoGroup, todosList = [], isCompleted }) => {
   const { handleChange } = useUpdate({ isCompleted });
+  const { sortOrder, setSortOrder } = useSortList();
+  const listSorted = todosList.slice();
+
+  if (isCompleted) {
+    listSorted.sort((objA, objB) =>
+      sortDistance(
+        Number(objA.created_timestamp),
+        Number(objA.completed),
+        Number(objB.created_timestamp),
+        Number(objB.completed)
+      )
+    );
+  } else {
+    listSorted.sort((objA, objB) =>
+      compareStringAsc(objB.created_timestamp, objA.created_timestamp)
+    );
+  }
+  if (sortOrder === "desc") {
+    listSorted.reverse();
+  }
+
   return (
     <article className={stylesTodo.group}>
-      <h2 className={stylesTodo.groupHeading}>{todoGroup}</h2>
-      {todosList.length ? (
+      <TodoGroupHeading
+        todoGroup={todoGroup}
+        setSortOrder={setSortOrder}
+        sortOrder={sortOrder}
+      />
+      {listSorted.length ? (
         <ul className={stylesTodo.ul}>
-          {todosList.map(({ todoText, id }) => (
+          {listSorted.map(({ todoText, id, created_timestamp, completed }) => (
             <li key={`todo_li_${id}`}>
               <TodoUpdate
-                isCompleted={isCompleted}
                 id={id}
                 todoText={todoText}
                 handleChange={handleChange}
+                created_timestamp={created_timestamp}
+                completed={completed}
               />
             </li>
           ))}

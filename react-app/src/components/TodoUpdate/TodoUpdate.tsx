@@ -28,19 +28,21 @@ export const useUpdate: TuseUpdate = ({ isCompleted }) => {
 };
 
 interface Props {
-  isCompleted?: boolean;
   id: Tid;
   todoText: string;
   handleChange: ThandleChange;
+  created_timestamp: string;
+  completed?: string;
 }
 
-const TodoUpdate: FC<Props> = ({ isCompleted, id, todoText, handleChange }) => {
+const TodoUpdate: FC<Props> = ({ id, todoText, handleChange, created_timestamp, completed }) => {
   return (
     <TodoLabel
-      isCompleted={isCompleted}
       id={id}
       todoText={todoText}
       handleChange={handleChange}
+      created_timestamp={created_timestamp}
+      completed={completed}
     />
   );
 };

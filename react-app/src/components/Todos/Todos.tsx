@@ -21,7 +21,6 @@ const Todos: FC = () => {
   const completedLoaded = obj?.completed;
 
   useEffect(() => {
-
     acPopulateTodos({
       pending: pendingLoaded,
       completed: completedLoaded,
