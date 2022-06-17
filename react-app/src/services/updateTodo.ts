@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { RowPropsClient } from "src/types";
+import { PropsTodos } from "src/types";
 import { PREFIX_PROTOCOL } from "./util";
 
 export const TODOS_URL_UPDATE = "/api/todos/post/update";
@@ -9,7 +9,7 @@ export interface PropsComplete {
 }
 type TUpdateTodo = (
   props: PropsComplete
-) => Promise<AxiosResponse<RowPropsClient[]>>; // Just return pending
+) => Promise<AxiosResponse<PropsTodos>>; // Just return pending
 
 export const updateTodo: TUpdateTodo = (data) =>
   axios.post(`${PREFIX_PROTOCOL}${TODOS_URL_UPDATE}`, data);

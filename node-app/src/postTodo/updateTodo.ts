@@ -1,7 +1,7 @@
 import { Express, Request, Response } from "express";
 import { DatabasePool, DatabasePoolConnection, sql } from "slonik";
+import { getBothPendingCompleted } from "../getTodos/getTodos";
 import { RowProps } from "src/types";
-import { filterPending } from "../util/util";
 
 // TODO: get from .env
 const url = "/api/todos/post/update";
@@ -21,7 +21,7 @@ const updateCompleted: TupdateCompleted = async ({
   await connection.query(
     sql`UPDATE ${sql.identifier([
       table,
-    ])} set completed = ${completed} WHERE id = '${id}'`
+    ])} set completed = ${completed} WHERE id = ${id}`
   );
 
 interface Props {
@@ -33,17 +33,17 @@ const updateTodo: Props = {
   post: ({ app, pool, table }) => {
     return app.post(url, async (req: Request, res: Response) => {
       const id = req.body.id || undefined;
-      const completed = req.body.completed || false;
+      const isCompleted = req.body.completed || false;
 
       try {
         const result = await pool.connect(async (connection) => {
-          await updateCompleted({ connection, table, completed, id });
+          await updateCompleted({ connection, table, completed: isCompleted, id });
 
           const resultRows = await connection.query<RowProps>(
             sql`SELECT * FROM ${sql.identifier([table])} ORDER BY id ASC`
           );
-          const pending = filterPending(resultRows.rows);
-          return res.send(pending);
+          const rowsBoth = getBothPendingCompleted(resultRows.rows)
+          return res.send(rowsBoth);
         });
         return result;
       } catch (err) {

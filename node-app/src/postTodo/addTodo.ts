@@ -28,19 +28,23 @@ const addTodo: Props = {
     return app.post(url, async (req: Request, res: Response) => {
       const todoText = req.body?.todoText;
       try {
-        const result = await pool.connect(async (connection) => {
+        await pool.connect(async (connection) => {
           await add({ connection, table, todoText });
+        });
+      } catch (err) {
+        console.log("node get1 - catch", { err });
+      }
+      try {
+        await pool.connect(async (connection) => {
           const resultRows = await connection.query<RowProps>(
             sql`SELECT * FROM ${sql.identifier([table])} ORDER BY id ASC`
           );
           const pending = filterPending(resultRows.rows);
           return res.send(pending);
         });
-        return result;
       } catch (err) {
-        console.log("node get - catch", { err });
+        console.log("node get2 - catch", { err });
       }
-
       return res.send(false); // TODO: handle error
     });
   },

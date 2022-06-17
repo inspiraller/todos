@@ -1,5 +1,5 @@
 import { Express } from "express";
-import { DatabasePool, QueryResult, sql } from "slonik";
+import { DatabasePool, sql } from "slonik";
 import { ReadonlyRows, RowProps } from "src/types";
 import { filterCompleted, filterPending } from "../util/util";
 
@@ -21,6 +21,11 @@ const getFromDb: TgetFromDb = async ({ pool, table }) =>
     return resultRows.rows;
   });
 
+export const getBothPendingCompleted = (rows: ReadonlyRows) => {
+  const pending = filterPending(rows);
+  const completed = filterCompleted(rows);
+  return {pending, completed}
+}
 interface Props {
   url: string;
   get: (props: { app: Express; pool: DatabasePool; table: string }) => Express;
@@ -31,9 +36,8 @@ const getTodos: Props = {
   get: ({ app, pool, table }) => {
     return app.get(url, async (req, res) => {
       const rows = await getFromDb({ pool, table });
-      const pending = filterPending(rows);
-      const completed = filterCompleted(rows);
-      return res.send({pending, completed});
+      const rowsBoth = getBothPendingCompleted(rows);
+      return res.send(rowsBoth);
     });
   },
 };
