@@ -1,5 +1,5 @@
 import { Express, Request, Response } from "express";
-import { DatabasePool, DatabasePoolConnection, sql } from "slonik";
+import { DatabasePool, DatabasePoolConnection, QueryResult, sql } from "slonik";
 import { RowProps } from "src/types";
 import { filterPending } from "../util/util";
 
@@ -10,12 +10,11 @@ type Tadd = (props: {
   connection: DatabasePoolConnection;
   table: string;
   todoText: string;
-}) => void;
+}) => Promise<any>;
+
 const add: Tadd = async ({ connection, table, todoText }) =>
   await connection.query(
-    sql`INSERT INTO ${sql.identifier([
-      table,
-    ])}("todoText",completed) VALUES(${todoText}, false)`
+    sql`INSERT INTO ${sql.identifier([table])}("todoText") VALUES(${todoText})`
   );
 
 interface Props {
@@ -27,25 +26,25 @@ const addTodo: Props = {
   post: ({ app, pool, table }) => {
     return app.post(url, async (req: Request, res: Response) => {
       const todoText = req.body?.todoText;
-      try {
-        await pool.connect(async (connection) => {
+      pool.connect(async (connection) => {
+        try {
           await add({ connection, table, todoText });
-        });
-      } catch (err) {
-        console.log("node get1 - catch", { err });
-      }
-      try {
-        await pool.connect(async (connection) => {
+        } catch (err) {
+          return res.send(false);
+        }
+
+        try {
           const resultRows = await connection.query<RowProps>(
             sql`SELECT * FROM ${sql.identifier([table])} ORDER BY id ASC`
           );
           const pending = filterPending(resultRows.rows);
           return res.send(pending);
-        });
-      } catch (err) {
-        console.log("node get2 - catch", { err });
-      }
-      return res.send(false); // TODO: handle error
+        } catch (err) {
+          return res.send(false); 
+        }
+      });
+
+
     });
   },
 };

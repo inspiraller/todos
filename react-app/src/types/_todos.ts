@@ -1,5 +1,6 @@
+export type Tid = number | string;
 export interface RowPropsClient {
-  id: number | string;
+  id: Tid;
   todoText: string;
 }
 export type ReadonlyRows = ReadonlyArray<RowPropsClient>;

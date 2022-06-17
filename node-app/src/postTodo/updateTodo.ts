@@ -21,7 +21,7 @@ const updateCompleted: TupdateCompleted = async ({
   await connection.query(
     sql`UPDATE ${sql.identifier([
       table,
-    ])} set completed = ${completed} WHERE id = ${id}`
+    ])} set completed = ${completed ? new Date().toISOString() : null} WHERE id = ${id}`
   );
 
 interface Props {

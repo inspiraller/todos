@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from "axios";
-import { PropsTodos } from "src/types";
+import { PropsTodos, Tid } from "src/types";
 import { PREFIX_PROTOCOL } from "./util";
 
 export const TODOS_URL_UPDATE = "/api/todos/post/update";
 export interface PropsComplete {
-  id: number | string;
+  id: Tid;
   completed: boolean;
 }
 type TUpdateTodo = (

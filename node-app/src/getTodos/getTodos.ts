@@ -17,7 +17,6 @@ const getFromDb: TgetFromDb = async ({ pool, table }) =>
     const resultRows = await connection.query<RowProps>(
       sql`SELECT * FROM ${sql.identifier([table])} ORDER BY id ASC`
     );
-    console.log('getFromDb', {resultRows})
     return resultRows.rows;
   });
 

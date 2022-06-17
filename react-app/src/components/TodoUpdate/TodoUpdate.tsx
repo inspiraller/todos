@@ -2,7 +2,7 @@ import React, { FC, useCallback } from "react";
 import { updateTodo } from "src/services/updateTodo";
 
 import useTodos from "src/store/data/todos/useTodos";
-import { TevtInputChange } from "src/types";
+import { TevtInputChange, Tid } from "src/types";
 import TodoLabel from "./TodoLabel";
 
 type ThandleChange = (evt: TevtInputChange) => void;
@@ -29,7 +29,7 @@ export const useUpdate: TuseUpdate = ({ isCompleted }) => {
 
 interface Props {
   isCompleted?: boolean;
-  id: number | string;
+  id: Tid;
   todoText: string;
   handleChange: ThandleChange;
 }
