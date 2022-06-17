@@ -7,9 +7,11 @@ const { env } = process;
 const { PG_DB, PG_USER, PG_PWD, PG_TABLE } = env;
 const { exec } = child_process;
 
-const output = "export.csv";
-const cmd = `docker exec container-db psql -U ${PG_USER} -d ${PG_DB} -c \"COPY ${PG_TABLE} TO STDOUT WITH CSV HEADER\" > ${output}`;
+const output = "export-dead.csv";
 
+const volume = "postgres-db_pgdata"; // 'pgdata'
+const cmd = `docker run --name=sqldumpcontainer -e POSTGRES_USER=${PG_USER} -e POSTGRES_DB=${PG_DB} -e POSTGRES_PASSWORD=${PG_PWD} -e PGDATA=/temp -v ${volume} -d postgres:12`;
+//const cmd = `docker exec -t --user {${PG_USER} container-db ${PG_DB} -c -U ${PG_USER} > dump_${new Date().getTime()}.sql`
 exec(cmd, {}, (error, stdout) => {
   if (error) {
     console.error(error);
@@ -17,4 +19,3 @@ exec(cmd, {}, (error, stdout) => {
     console.log("Export csv success: ", output);
   }
 });
-// if (error) {);

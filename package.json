@@ -9,7 +9,9 @@
     "start": "concurrently \"npm run db\" \"npm run server\" \"npm run client\"",
     "db-clear-volume": "docker volume rm postgres-db_pgdata",
     "db-clear": "npm run db-export && cd postgres-db && docker-compose down && npm run db-clear-volume",
-    "db-export": "cd postgres-db && node export.js"
+    "db-export": "cd postgres-db && node export.js",
+    "db-export-stopped-container": "docker restart container-db && npm run db-export",
+    "db-export-missing-container": "cd postgres-db/restore && docker-compose --env-file \"../../.env\" up && npm run db-export"
   },
   "dependencies": {
     "concurrently": "^7.2.1",
