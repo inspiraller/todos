@@ -1,4 +1,4 @@
 {
-  "pending": [{"id": 1, "todoText": "two"}],
-  "completed": [{"id": 2, "todoText": "one"}]
+  "pending": [{"id": 1, "todoText": "two", "created_timestamp": 0, "completed": null}],
+  "completed": [{"id": 2, "todoText": "one", "created_timestamp": 0, "completed": null}]
 }
