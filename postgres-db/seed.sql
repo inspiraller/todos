@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS ${PG_TABLE}(
 
 -- in order to have case sensitive column names, they must be quoted.
 
-COPY ${PG_TABLE} FROM '/var/lib/postgresql/data/init.table.csv' DELIMITER ',' CSV HEADER;
+COPY ${PG_TABLE} FROM '/var/lib/postgresql/data/latest.csv' DELIMITER ',' CSV HEADER;

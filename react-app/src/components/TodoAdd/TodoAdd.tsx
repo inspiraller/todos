@@ -19,6 +19,7 @@ const TodoAdd: FC = () => {
           pending: resp.data,
         });
       });
+      setTodoValue('');
     }
     evt.preventDefault();
   };

@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const initServer = (pool: DatabasePool) => {
-  getTodos.get({ app,  pool, table: PG_TABLE });
+  getTodos.get({ app, pool, table: PG_TABLE });
 
   addTodo.post({ app, pool, table: PG_TABLE });
   updateTodo.post({ app, pool, table: PG_TABLE });
@@ -45,18 +45,19 @@ const init = () => {
     `postgresql://${PG_USER}:${PG_PWD}@localhost:5432/${PG_DB}`
   );
 
-  pool.connect(async (connection) => {
-    try {
-      const resultExist = await connection.query(sql`SELECT EXISTS (SELECT FROM pg_tables WHERE tablename  = ${PG_TABLE});`);
+  try {
+    pool.connect(async (connection) => {
+      const resultExist = await connection.query(
+        sql`SELECT EXISTS (SELECT FROM pg_tables WHERE tablename  = ${PG_TABLE});`
+      );
       const isExist = resultExist.rows[0].exists;
       if (isExist) {
-        initServer(pool)
+        initServer(pool);
       }
-
-    } catch (err) {
-      console.log(err);
-    }
-  });
+    });
+  } catch (err) {
+    console.log('pool.connect error =', err);
+  }
 };
 
 init();
