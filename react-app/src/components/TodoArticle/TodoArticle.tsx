@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import useTodos from "src/store/data/todos/useTodos";
 import stylesTodo from "src/styles/Todo.module.css";
 import { RowPropsClient, TevtInputChange } from "src/types";
+import Empty from "../Empty/Empty";
 import TodoGroupHeading, {
   compareStringAsc,
   compareStringDesc,
@@ -93,6 +94,7 @@ const TodoArticle: FC<Props> = ({ todoGroup, todosList = [], isCompleted }) => {
           ))}
         </ul>
       ) : null}
+      {!listSorted.length ? <Empty/> : null}
     </article>
   );
 };

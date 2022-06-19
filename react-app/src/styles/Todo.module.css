@@ -84,6 +84,10 @@
   transform: rotate(45deg);
 }
 
+.empty {
+  color: var(--lightGrey1);
+  text-align: center;
+}
 /* end .groupHeading */
 .ul {
   margin: 0;
@@ -165,6 +169,7 @@
     flex-direction: column;
   }
 }
+
 
 /* sticky top */
 .mainTitle {
