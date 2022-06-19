@@ -1,15 +1,22 @@
 html {
   font-size: 62.5%;
 }
+
+
 html,
 body {
-  padding: 0;
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  color: var(--darkGrey3);
 }
 body {
   font-size: 1.4rem;
+  background: var(--lightGrey4);
+}
+
+html, body, div, main, form, fieldset, legend {
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -19,4 +26,34 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+fieldset {
+  border: 0;
+  text-indent: 0;
+}
+fieldset:first-child {
+  border-top: 0;
+}
+legend {
+  width: 100%;
+  border: 0;
+  text-indent: 0;
+   /* hack  - to ensure fieldset itself retains position relative position*/
+}
+
+
+:root {
+
+  --button: #415dfb;
+  --date: rgb(89, 72, 89);
+  --buttonHighlight: #7997f8;
+  --darkGrey1: #888;
+  --darkGrey2: #444;
+  --darkGrey3: #111;
+
+  --lightGrey1: #aaa;
+  --lightGrey2: #ccc;
+  --lightGrey3: #d9d9d9;
+  --lightGrey4: #efefef;
 }

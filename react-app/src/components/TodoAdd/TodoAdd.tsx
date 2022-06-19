@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { addTodo } from "src/services/addTodo";
 import useTodos from "src/store/data/todos/useTodos";
 import { TevtForm, TevtInputChange } from "src/types";
+import stylesTodo from "src/styles/Todo.module.css";
 
 const TodoAdd: FC = () => {
   const { acPopulateTodos, pending } = useTodos();
@@ -24,17 +25,18 @@ const TodoAdd: FC = () => {
     evt.preventDefault();
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={stylesTodo.formAdd}>
       <fieldset>
-        <legend>Add Todo</legend>
+        <legend className={stylesTodo.legend}>Add Todo</legend>
         <input
           type="text"
           aria-label="todo"
-          placeholder="todo"
+          placeholder="Add todo"
           value={todoValue}
           onChange={handleChange}
+          className={stylesTodo.inputText}
         />
-        <button type="submit">Add</button>
+        <button type="submit" className={stylesTodo.addButton}>Add</button>
       </fieldset>
     </form>
   );

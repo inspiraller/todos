@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import useTodos from "src/store/data/todos/useTodos";
 import stylesTodo from "src/styles/Todo.module.css";
 import { RowPropsClient, TevtInputChange } from "src/types";
@@ -41,6 +41,7 @@ const sortDistance = (
 ) => aEnd - aStart - (bEnd - bStart);
 
 const TodoArticle: FC<Props> = ({ todoGroup, todosList = [], isCompleted }) => {
+  const [isShow, setShow] = useState(true);
   const { handleChange } = useUpdate({ isCompleted });
   const { sortOrder, setSortOrder } = useSortList();
   const listSorted = todosList.slice();
@@ -63,14 +64,21 @@ const TodoArticle: FC<Props> = ({ todoGroup, todosList = [], isCompleted }) => {
     listSorted.reverse();
   }
 
+  const handleToggle = () => {
+    setShow(prev => !prev);
+  }
+
+  const classButtonShowVisible = isShow? stylesTodo.buttonShowVisible: '';
+  
   return (
     <article className={stylesTodo.group}>
+      <button type="button" onClick={handleToggle} className={`${stylesTodo.buttonShow} ${classButtonShowVisible}`}><span>Toggle</span></button>
       <TodoGroupHeading
         todoGroup={todoGroup}
         setSortOrder={setSortOrder}
         sortOrder={sortOrder}
       />
-      {listSorted.length ? (
+      {isShow && listSorted.length ? (
         <ul className={stylesTodo.ul}>
           {listSorted.map(({ todoText, id, created_timestamp, completed }) => (
             <li key={`todo_li_${id}`}>

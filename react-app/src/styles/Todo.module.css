@@ -1,5 +1,7 @@
+
 .mainTitle {
   margin: 0;
+  padding: 0;
   font-size: 7rem;
   text-align: center;
 }
@@ -9,15 +11,40 @@
 }
 .group {
   margin: 1rem;
-  padding: 1.5rem;
+  padding: 4rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
-  border: 1px solid #eaeaea;
+  border: 1px solid var(--lightGrey2);
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 400px;
+  position: relative;
 }
+
+.buttonShow {
+  position: absolute;  
+  top: 2rem;
+  right: 2rem;
+  border: 0;
+  background: transparent;
+}
+.buttonShow:before {
+  content: '+';
+  font-size: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.buttonShowVisible:before {
+  content: '-';
+}
+.buttonShow span {
+  visibility: hidden;
+}
+
+
 /* .groupHeading - */
 .groupHeading {
   margin: 0;
@@ -26,6 +53,10 @@
   align-items: center;
   flex-direction: row;
 }
+.groupHeadingTitle {
+  margin: 0 2rem 0 0;
+}
+
 .sort {
   position: relative;
   font-size: 0.3rem;
@@ -81,11 +112,49 @@
 }
 .completed {
   font-style: normal;
-  color: purple;
+  color: var(--date);
   margin: 0 0 0 auto;
   font-size: 1.4rem;
 }
 
+/* form */
+.formAdd {
+  min-width: 40rem;
+  margin: 0 auto;
+}
+
+
+.legend {
+  font-size: 2rem;
+  display: none;
+}
+.inputText, .addButton {
+  padding: 2rem;
+  border-radius: 0.4rem;
+  font-size: 2rem;
+}
+.inputText {
+  border: 1px solid var(--darkGrey1);
+}
+.inputText::placeholder {
+  color: var(--lightGrey3);
+}
+.inputText:active,
+.inputText:focus {
+  outline: none;
+  border-color: var(--darkGrey3);
+}
+
+.addButton {
+  background: var(--button);
+  color: white;
+  margin: 0 0 0 1rem;
+  border: 0;
+  cursor: pointer;
+}
+.addButton:hover {
+  background: var(--buttonHighlight);
+}
 
 @media (max-width: 700px) {
   .wrapper {
@@ -95,4 +164,26 @@
     width: 100%;
     flex-direction: column;
   }
+}
+
+/* sticky top */
+.mainTitle {
+  /* visibility: hidden; */
+  display: none;
+}
+.formAdd {
+  position: fixed;
+  top:0;
+  width: 100%;
+  height: 10rem;
+  background: var(--lightGrey4);
+  z-index: 20;/* above wrapper */
+  background: var(--darkGrey2);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.wrapper {
+  margin-top: 8rem;
 }
