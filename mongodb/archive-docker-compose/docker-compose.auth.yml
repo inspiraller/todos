@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  mongodb:
+    container_name: mongo-dev
+    image: mongo:4 
+    # note: 
+    # if there are any errors in the logs, then can't authenticate
+    # there was an issue with version: > 3.1  and mongo image 4.2 or latest
+    # WARNING: Must specify version: 3.1 and image mongo:4
+
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=ad
+      - MONGO_INITDB_DATABASE=auth
+      - MONGO_INITDB_ROOT_PASSWORD=pas
+
+    ports:
+      - '27017:27017'
+    volumes: 
+      - ./data:/data/db
+
+    restart: unless-stopped

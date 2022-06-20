@@ -1,0 +1,20 @@
+{
+  "name": "node-server-ts",
+  "version": "1.0.0",
+  "description": "node-server using docker for a production build",
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "Steve Tomlin",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "echo 'test'",
+    "boot":  "echo 'boot'",
+    "_boot_":  "echo '_boot_'",
+    "boot:boot:boot":  "echo 'boot:boot:boot'"
+  }
+}
