@@ -1,0 +1,4 @@
+id.auto()
+todoText.string()
+created_timestamp.date()
+completed.date()
