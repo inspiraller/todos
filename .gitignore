@@ -42,3 +42,4 @@ postgres-db/export.csv
 
 mongodb/mongodb_data/*
 !mongodb/mongodb_data/latest.csv
+!mongodb/mongodb_data/field_file_types.tsx
