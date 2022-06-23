@@ -15,6 +15,7 @@ const MONGO_HOST = env.MONGO_HOST as string;
 const MONGO_URI = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:${MONGO_PORT}`;
 const MONGO_COLLECTION = env.MONGO_COLLECTION as string;
 
+const IMPORT_CSV_PATH = '../../mongodb_data/latest.csv'
 console.log('node-import.ts --- env variables', {MONGO_URI});
 
 
@@ -82,7 +83,7 @@ const init = async () => {
     // Need to switch to this database
     bufferCommands: false,
   });
-  const pathCsv = path.join(__dirname, './latest.csv');
+  const pathCsv = path.join(__dirname, IMPORT_CSV_PATH);
   const arrImport = await csvToData(pathCsv)
 
   const db = mongoose.connection.useDb(MONGO_DB);

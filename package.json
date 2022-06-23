@@ -7,9 +7,11 @@
     "server-pg": "cd node-app-pg && npm start",
     "client": "cd react-app && npm run dev",
     "start": "concurrently \"npm run db\" \"npm run server-pg\" \"npm run client\"",
-    "db-export": "cd postgres-db && node export.js",
-    "db-clear": "npm run db-export && cd postgres-db && docker-compose down && docker volume rm postgres-db_pgdata",
+    "pg-export": "cd postgres-db && node export.js",
+    "pg-clear": "npm run db-export && cd postgres-db && docker-compose down && docker volume rm postgres-db_pgdata",
     "mongo": "cd mongodb && docker-compose --env-file \"../.env\" up",
+    "mongo-export": "cd mongodb && node export.js",
+    "mongo-clear": "npm run mongo-export && cd mongodb && docker-compose down && docker volume rm mongodb_mongodb_data && docker rm mongodb_mongodb_init",
     "dockerTestArg": "cd dockerTestArg && docker-compose --env-file \"../.env\" up"
   },
   "dependencies": {

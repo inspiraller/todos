@@ -38,3 +38,7 @@ yarn-error.log*
 
 # when exporting data - doing only locally and not commiting
 postgres-db/export.csv
+
+
+mongodb/mongodb_data/*
+!mongodb/mongodb_data/latest.csv
