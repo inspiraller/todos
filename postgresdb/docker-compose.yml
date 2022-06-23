@@ -2,7 +2,7 @@ version: "2"
 
 services:
   db:
-    container_name: container-db
+    container_name: $PG_HOST
     image: postgres:12
     environment:
       - POSTGRES_DB=$PG_DB
@@ -25,7 +25,7 @@ services:
 
     restart: unless-stopped
 volumes:
-  # Will create docker volume with name of the container folder: postgres-db_pgdata/**/pgdata = postgres-db_pgdata
+  # Will create docker volume with name of the container folder: postgresdb_pgdata/**/pgdata = postgresdb_pgdata
   pgdata:
 
 

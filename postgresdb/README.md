@@ -4,10 +4,10 @@
 # Testing:
 # connect
 // connect      containername  language username               database
-docker exec -it container-db          psql     -U postgres_todos_user -d postgres_todos_db
+docker exec -it postgres1          psql     -U postgres_todos_user -d postgres_todos_db
 
 # or debug
-docker exec -it container-db bash
+docker exec -it postgres1 bash
 
 # Search if table exist
 ```
@@ -65,4 +65,4 @@ sh postgres-db\script.sh
 # Exporting - interesting
 https://dba.stackexchange.com/questions/308374/docker-exec-user-db2inst1-unable-to-find-user-db2inst1-no-matching-entries-i
 
-docker exec -it container-db psql -U postgres_todos_user -d postgres_todos_db -c "COPY todos TO STDOUT WITH CSV HEADER" > postgres-db/postgresql_data/export.csv
+docker exec -it postgres1 psql -U postgres_todos_user -d postgres_todos_db -c "COPY todos TO STDOUT WITH CSV HEADER" > postgres-db/postgresql_data/export.csv
