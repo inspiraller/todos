@@ -12,9 +12,9 @@ services:
       # Need for init-mongo-js.sh
       - MONGO_COLLECTION=${MONGO_COLLECTION}
 
+      # Needed permissions for specific user - MONGO_USER
     volumes:
       - ./mongodb_data:/data/db
-      # Needed permissions for specific user - MONGO_USER
       - ./init-mongo-js.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
 
     restart: unless-stopped

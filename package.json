@@ -3,17 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "pg": "cd postgresdb && docker-compose --env-file \"../.env\" up --build ",
-    "server-pg": "cd node-app-pg && npm start",
-    "client": "cd react-app && npm run dev",
-    "start": "concurrently \"npm run pg\" \"npm run server-pg\" \"npm run client\"",
-    "pg-export": "cd postgresdb && node -r dotenv/config export.js dotenv_config_path=\"../.env\"",
-    "pg-clear": "npm run pg-export && cd postgresdb && docker-compose down && docker volume rm postgresdb_pgdata",
-    "mongo": "cd mongodb && docker-compose --env-file \"../.env\" up",
+    "postgres-start-all": "concurrently \"npm run postgresdb\" \"npm run postgres-node-server\" \"npm run client\"",
+    "postgres-copydata": "cd postgresdb && rm -rf postgresql_data && cp -fr copy-into-data postgresql_data",
+    "postgresdb": "npm run postgres-copydata && cd postgresdb && docker-compose --env-file \"../.env\" up --build ",
+    "postgres-export": "cd postgresdb && node -r dotenv/config export.js dotenv_config_path=\"../.env\"",
+    "postgres-clear-data": "rm -rf postgresdb/postgresdb_data",
+    "postgres-clear-volume": "cd postgresdb && docker-compose down && docker volume rm postgresdb_pgdata",
+    "postgres-clear": "npm run postgres-export && npm run postgres-clear-volume && npm run postgres-clear-data",
+    "postgres-node-server": "cd postgres-node-server && npm start",
+
+    "mongo-start-all": "concurrently \"npm run mongodb\" \"npm run mongo-node-server\" \"npm run client\"",
+    "mongodb": "cd mongodb && docker-compose --env-file \"../.env\" up",
     "mongo-export": "cd mongodb && node -r dotenv/config export.js dotenv_config_path=\"../.env\"",
-    "mongo-clear": "npm run mongo-export && cd mongodb && docker-compose down && docker volume rm mongodb_mongodb_data && docker rm mongodb_mongodb_init",
-    "dockerTestArg": "cd dockerTestArg && docker-compose --env-file \"../.env\" up",
-    "server-mongo": "cd node-app-mongo && npm start"
+    "mongo-clear-data": "mv mongodb/mongodb_data/latest.csv mongodb/copy_into_data/latest.csv && rm -rf mongodb/mongodb_data && cp -r mongodb/copy-into-data mongodb/mongodb_data",
+    "mongo-clear-volume": "cd mongodb && docker stop mongo1 && docker stop node-import && docker rm mongo1 && docker rm node-import && docker volume rm mongodb_mongodb_data && docker rm mongodb_mongodb_init",
+    "mongo-clear": "npm run mongo-export && npm run mongo-clear-volume && npm run mongo-clear-data",
+    "NOTE": "When running docker-compose down for mongo we get - Service 'node-import' depends on service '' which is undefined.",
+    "mongo-node-server": "cd mongo-node-server && npm start",
+
+    "client": "cd react-app && npm run dev"
   },
   "dependencies": {
     "concurrently": "^7.2.1",

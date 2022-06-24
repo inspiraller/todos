@@ -3,7 +3,7 @@ import cors from "cors";
 import mongoose, {  Connection } from "mongoose";
 
 import getTodos from "./getTodos/getTodos";
-// import addTodo from "./postTodo/addTodo";
+import addTodo from "./postTodo/addTodo";
 // import updateTodo from "./postTodo/updateTodo";
 
 const { env } = process;
@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 const initServer = (connection: Connection) => {
   getTodos.get({ app, connection, table: MONGO_COLLECTION });
 
-  // addTodo.post({ app, connection, table: MONGO_COLLECTION });
+  addTodo.post({ app, connection, table: MONGO_COLLECTION });
   // updateTodo.post({ app, connection, table: MONGO_COLLECTION });
 
   app.listen(port, host, function () {

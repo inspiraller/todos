@@ -15,7 +15,8 @@ const MONGO_HOST = env.MONGO_HOST as string;
 const MONGO_URI = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:${MONGO_PORT}`;
 const MONGO_COLLECTION = env.MONGO_COLLECTION as string;
 
-const IMPORT_CSV_PATH = '../../mongodb_data/latest.csv'
+const IMPORT_CSV_PATH = '../../copy-into-data/latest.csv' // defined in DockerFile
+// const IMPORT_CSV_PATH = '../../mongodb_data/latest.csv'
 console.log('node-import.ts --- env variables', {MONGO_URI});
 
 

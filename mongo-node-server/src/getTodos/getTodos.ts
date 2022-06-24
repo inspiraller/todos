@@ -1,26 +1,11 @@
 import { Express } from "express";
-import { Connection, Schema, Model, Document} from "mongoose";
-import { Rows } from "src/types";
+import { Connection } from "mongoose";
+import { Rows,  } from "src/types";
+import { getConnectedModel } from "../util/mongo";
 import { filterCompleted, filterPending } from "../util/util";
 
 const url = "/api/todos/get";
 
-
-export const TodosSchema = new Schema({
-  id: Number,
-  todoText: String,
-  created_timestamp: Date,
-  completed: Date,
-});
-
-type TgetConnectedModel = (props: {
-  connection: Connection;
-  table: string;
-}) => Model<any>  // more performant
-// Model<Document<RowProps>>;
-
-const getConnectedModel: TgetConnectedModel = ({ connection, table }) =>
-  connection.model(table, TodosSchema);
 
 type TgetFromDb = (props: {
   connection: Connection;
@@ -30,7 +15,7 @@ type TgetFromDb = (props: {
 //   _id: Types.ObjectId;
 // })[]>
 
-const getFromDb: TgetFromDb = async ({ connection, table }) => {
+export const getFromDb: TgetFromDb = async ({ connection, table }) => {
   const connectedModel = getConnectedModel({ connection, table });
   const result = await connectedModel.find()
   return result as unknown as Rows; 

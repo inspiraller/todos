@@ -4,8 +4,8 @@ RUN apt-get update && apt-get install -y netcat
 
 WORKDIR /usr/src/app
 COPY node-import-csv ./node-import-csv
-COPY mongodb_data/latest.csv ./mongodb_data/latest.csv
-COPY mongodb_data/field_file_types.txt ./mongodb_data/field_file_types.txt
+COPY copy-into-data ./copy-into-data
+
 RUN chmod +x node-import-csv/scripts/wait.sh
 RUN cd node-import-csv && npm ci
 CMD cd node-import-csv && echo "${PWD}" && sh scripts/wait.sh && echo "next command..." && npm start

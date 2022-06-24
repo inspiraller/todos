@@ -8,3 +8,6 @@ docker exec -it mongo1 bash
 
 # view imported todos
 db.todos.find().toArray()
+
+# remove 
+db.todos.remove({})
