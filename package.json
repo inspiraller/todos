@@ -12,7 +12,8 @@
     "mongo": "cd mongodb && docker-compose --env-file \"../.env\" up",
     "mongo-export": "cd mongodb && node -r dotenv/config export.js dotenv_config_path=\"../.env\"",
     "mongo-clear": "npm run mongo-export && cd mongodb && docker-compose down && docker volume rm mongodb_mongodb_data && docker rm mongodb_mongodb_init",
-    "dockerTestArg": "cd dockerTestArg && docker-compose --env-file \"../.env\" up"
+    "dockerTestArg": "cd dockerTestArg && docker-compose --env-file \"../.env\" up",
+    "server-mongo": "cd node-app-mongo && npm start"
   },
   "dependencies": {
     "concurrently": "^7.2.1",
