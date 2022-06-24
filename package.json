@@ -16,7 +16,7 @@
     "mongodb": "cd mongodb && docker-compose --env-file \"../.env\" up",
     "mongo-export": "cd mongodb && node -r dotenv/config export.js dotenv_config_path=\"../.env\"",
     "mongo-clear-data": "mv mongodb/mongodb_data/latest.csv mongodb/copy_into_data/latest.csv && rm -rf mongodb/mongodb_data && cp -r mongodb/copy-into-data mongodb/mongodb_data",
-    "mongo-clear-volume": "cd mongodb && docker stop mongo1 && docker stop node-import && docker rm mongo1 && docker rm node-import && docker volume rm mongodb_mongodb_data && docker rm mongodb_mongodb_init",
+    "mongo-clear-volume": "cd mongodb && docker stop mongo1 && docker stop node-import && docker rm mongo1 && docker rm node-import && docker volume rm mongodb_mongodb_data && docker volume rm mongodb_mongodb_init",
     "mongo-clear": "npm run mongo-export && npm run mongo-clear-volume && npm run mongo-clear-data",
     "NOTE": "When running docker-compose down for mongo we get - Service 'node-import' depends on service '' which is undefined.",
     "mongo-node-server": "cd mongo-node-server && npm start",
