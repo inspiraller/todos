@@ -23,8 +23,12 @@ break
 11. 1/2 day - Finish nodeserver, and react-app to consume data
 
 postgres,dynamic table names via arg into dockerfile, slonik identifier dynamic name to supply to sql statement, 
+
+# release/0.1.3-docker-mongo
+
+12 - approx 2 weeks. Investigation into docker. Using bash scripts for wait, setting up mongoose. Refactoring both postgres and mongodb for consistent naming convention logic. Providing copy data of latest.csv in and out from copy-into-data into volume mount. 
 -------------------------------------------
-# How do you build and run solution?
+# How do you build and run solution as mongo?
 ## Key: 
 - MAINREPO: https://github.com/inspiraller/todos.git
 
@@ -38,11 +42,37 @@ postgres,dynamic table names via arg into dockerfile, slonik identifier dynamic 
 - npm i
 
 ## Pre-requisites 3
-- cd node-app
+- cd mongo-node-server
 - npm i
 
 ## Go back to MAINREPO
 - cd MAINREPO
+npm run mongo-start-all
+
+# How do you build and run solution as postgres?
+## Key: 
+- MAINREPO: https://github.com/inspiraller/todos.git
+
+## Pre-requisite - software
+- Node
+- Docker
+
+## Pre-requisites 1
+- git clone MAINREPO
+- cd thisrepo
+- npm i
+
+## Pre-requisites 2
+- cd react-app
+- npm i
+
+## Pre-requisites 3
+- cd postgres-node-server
+- npm i
+
+## Go back to MAINREPO
+- cd MAINREPO
+npm run postgres-start-all
 
 ----------------------------------------------------------------
 ## Start from MAINREPO

@@ -1,6 +1,6 @@
 {
   "name": "todos-app",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "private": true,
   "scripts": {
     "postgres-start-all": "concurrently \"npm run postgresdb\" \"npm run postgres-node-server\" \"npm run client\"",
@@ -21,7 +21,9 @@
     "NOTE": "When running docker-compose down for mongo we get - Service 'node-import' depends on service '' which is undefined.",
     "mongo-node-server": "cd mongo-node-server && npm start",
 
-    "client": "cd react-app && npm run dev"
+    "client": "cd react-app && npm run dev",
+
+    "start": "npm run mongo-start-all"
   },
   "dependencies": {
     "concurrently": "^7.2.1",
