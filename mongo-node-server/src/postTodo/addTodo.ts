@@ -13,13 +13,18 @@ type Tadd = (props: {
   connection: Connection;
   table: string;
   todoText: string;
+  documentCount: number;
 }) => Promise<any>;
 
-const addAsSave: Tadd = async ({ connection, table, todoText }) => {
+let count = 0
+const addAsSave: Tadd = async ({ connection, table, todoText, documentCount = 0 }) => {
   const connectedModel = getConnectedModel({ connection, table });
-  const documentCount = await connectedModel.count({});
   const defaults = { created_timestamp: new Date().toISOString() };
-  return new connectedModel({ ...defaults, todoText, id: documentCount }).save();
+
+  const saved = new connectedModel({ ...defaults, todoText, id: documentCount + count }).save();
+  count = count + 1;
+  return saved;
+
 };
 
 interface Props {
@@ -28,14 +33,15 @@ interface Props {
     app: Express;
     connection: Connection;
     table: string;
+    documentCount: number;
   }) => Express;
 }
 const addTodo: Props = {
   url,
-  post: ({ app, connection, table }) => {
+  post: ({ app, connection, table, documentCount }) => {
     return app.post(url, async (req: Request, res: Response) => {
       const todoText = req.body?.todoText;
-      await addAsSave({ connection, table, todoText });
+      await addAsSave({ connection, table, todoText, documentCount });
       const rows = await getFromDb({ connection, table });
       const pending = filterPending(rows);
 

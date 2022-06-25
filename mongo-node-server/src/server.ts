@@ -4,7 +4,8 @@ import mongoose, {  Connection } from "mongoose";
 
 import getTodos from "./getTodos/getTodos";
 import addTodo from "./postTodo/addTodo";
-// import updateTodo from "./postTodo/updateTodo";
+import { getConnectedModel } from "./util/mongo";
+import updateTodo from "./postTodo/updateTodo";
 
 const { env } = process;
 
@@ -27,11 +28,13 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const initServer = (connection: Connection) => {
+const initServer = async (connection: Connection) => {
   getTodos.get({ app, connection, table: MONGO_COLLECTION });
 
-  addTodo.post({ app, connection, table: MONGO_COLLECTION });
-  // updateTodo.post({ app, connection, table: MONGO_COLLECTION });
+  const connectedModel = getConnectedModel({ connection, table: MONGO_COLLECTION });
+  const documentCount = await connectedModel.count({});
+  addTodo.post({ app, connection, table: MONGO_COLLECTION, documentCount });
+  updateTodo.post({ app, connection, table: MONGO_COLLECTION });
 
   app.listen(port, host, function () {
     console.log("listening on ", host, ":", port);
