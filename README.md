@@ -25,8 +25,8 @@ break
 postgres,dynamic table names via arg into dockerfile, slonik identifier dynamic name to supply to sql statement, 
 
 # release/0.1.3-docker-mongo
-
-12 - approx 2 weeks. Investigation into docker. Using bash scripts for wait, setting up mongoose. Refactoring both postgres and mongodb for consistent naming convention logic. Providing copy data of latest.csv in and out from copy-into-data into volume mount. 
+12.
+- approx 2 weeks. Investigation into docker. Using bash scripts for wait, setting up mongoose. Refactoring both postgres and mongodb for consistent naming convention logic. Providing copy data of latest.csv in and out from copy-into-data into volume mount. 
 -------------------------------------------
 # How do you build and run solution as mongo?
 ## Key: 
